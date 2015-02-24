@@ -5,17 +5,19 @@ require "pp"
 require "json"
 require "digest/md5"
 
-def make_not_svg(file)
+$color="ffffff"
+$patch_color="000000"
 
-    $color="ffffff"
-
-    $patch_box=true
-    $patch_color="000000"
+def make_not_svg(file,overwrite=false)
 
     cos = Math.cos(Math::PI/4)
 
     fin = file
     fout = File.join(File.dirname(fin),"not-"+File.basename(fin))
+
+    if File.exists?(fout) and not overwrite
+        return fout
+    end
 
     input_file = File.read(fin).gsub(/viewbox=/i,"viewBox=")
     input_file.gsub!(/#....../,"##{$patch_color}") if $patch_color
@@ -26,25 +28,30 @@ def make_not_svg(file)
     width = svg_node["width"].to_i
     height = svg_node["height"].to_i
 
-    vbox =  svg_node["viewBox"] 
-    vbox_x=0
-    vbox_y=0
-    vbox_w=0
-    vbox_h=0
-    if $patch_box
-        vbox_x = - 0.1*width 
-        vbox_y = - 0.1*height 
-        vbox_h = height - vbox_x *2
-        vbox_w = width - vbox_y *2
+    hd= 0
+    wd=0
 
-        svg_node["viewBox"] = [vbox_x,vbox_y, vbox_w, vbox_h].join(" ")
-        width = vbox_w
-        height = vbox_h
-        svg_node["width"]=width
-        svg_node["height"]=height
+    max= [width,height].max
+    factor = 1.1
+
+    if (max == width)
+        wd= width*(1-1/factor)
+        hd= height*(1-1/factor) +(width - height)
+        height=width
     else
-        vbox_x,vbox_y,vbox_h,vbox_w = vbox.split(" ").map{|x| x.to_i}
+        wd= width*(1-1/factor) + (height - width)
+        hd= height*(1-1/factor) 
     end
+    orig_path = xml.at("path")
+    orig_path["transform"]="scale(#{1000.0/width}) translate(#{wd/2},#{hd/2}) scale(#{1/factor})"
+
+
+    svg_node["width"] = 1000 
+    svg_node["height"] = 1000 
+    svg_node["viewBox"]=nil
+
+    width=1000
+    height=1000
 
     $rec_width=width/10
 
@@ -53,16 +60,17 @@ def make_not_svg(file)
     rec1 = Nokogiri::XML::Node.new "rect", xml
     rec1["width"]= $rec_width
     rec1["height"] = (width / cos) - $rec_width
-    rec1["transform"] = "translate(#{vbox_x}, #{ (height/2) - (cos *l/2) + (cos * $rec_width/2) + vbox_y}) matrix(#{cos} , -#{cos}, #{cos}, #{cos} , 0, 0)"
+    rec1["transform"] = "translate(0, #{ (height/2) - (cos *l/2) + (cos * $rec_width/2) }) matrix(#{cos} , -#{cos}, #{cos}, #{cos} , 0, 0)"
     rec1["style"] = "fill:#{$color}"
     svg_node.add_child(rec1)
 
     rec2 = Nokogiri::XML::Node.new "rect", xml
     rec2["width"]= $rec_width
     rec2["height"] = (width / cos) - $rec_width
-    rec2["transform"] = "translate(#{width - $rec_width*cos +vbox_x}, #{ (height/2) - (cos *l/2) - (cos * $rec_width/2) + vbox_y} ) matrix(#{cos} , #{cos}, -#{cos}, #{cos} , 0, 0)"
+    rec2["transform"] = "translate(#{width - $rec_width*cos }, #{ (height/2) - (cos *l/2) - (cos * $rec_width/2) } ) matrix(#{cos} , #{cos}, -#{cos}, #{cos} , 0, 0)"
     rec2["style"] = "fill:#{$color}"
     svg_node.add_child(rec2)
+
 
     f= File.open(fout,'w')
     f.write(xml.to_xml)
@@ -70,9 +78,13 @@ def make_not_svg(file)
     return fout
 end
 
-def unify_path(file)
+def unify_path(file,overwrite=false)
     fin = file
     fout = File.join(File.dirname(fin),"u-"+File.basename(fin))
+
+    if File.exists?(fout) and not overwrite
+        return fout
+    end
     
     res = IO.popen("inkscape  --verb EditSelectAll --verb ObjectUngroup --verb SelectionUnion --verb SelectionCombine --verb FileVacuum --verb FileSave --verb FileQuit  \"#{fin}\"")
     res.read()
@@ -82,9 +94,9 @@ end
 def xml_to_json(name,xml, code=59392)
     root = Nokogiri.parse(xml)
     path= root.at("svg/path")["d"]
-    width= 1200# root.at("svg")["width"]
+    width= root.at("svg")["width"]
     res={}
-    res[:uid]=Digest::MD5.hexdigest(name)
+    res[:uid]=Digest::MD5.hexdigest(name+rand(123456789).to_s)
     res[:css] = name
     res[:code] = code
     res[:src] = "custom_icons"
@@ -110,8 +122,6 @@ res_json[:ascent] = 850
 
 code=59392
 Dir.glob(File.join(ARGV[0],"*")).each do |f|
-    puts code
-    
     case f
     when /\/not-.*svg/i
         next
