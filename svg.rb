@@ -82,9 +82,9 @@ end
 def xml_to_json(name,xml, code=59392)
     root = Nokogiri.parse(xml)
     path= root.at("svg/path")["d"]
-    width= root.at("svg")["width"]
+    width= 1200# root.at("svg")["width"]
     res={}
-    res[:uid]=Digest::MD5.hexdigest(rand(76589876569).to_s)
+    res[:uid]=Digest::MD5.hexdigest(name)
     res[:css] = name
     res[:code] = code
     res[:src] = "custom_icons"
@@ -119,7 +119,8 @@ Dir.glob(File.join(ARGV[0],"*")).each do |f|
         puts "Converting #{f}"
         res_svg=make_not_svg(f)
         u_res_svg=unify_path(res_svg) 
-        j =  xml_to_json(File.basename(f, '.svg'),File.read(u_res_svg),code+=1)
+        j =  xml_to_json(File.basename(f, '.svg'),File.read(u_res_svg),code)
+        code+=1
         (res_json["glyphs"] ||= [] ) << j
     end
 
