@@ -2,7 +2,8 @@ svg: clean
 	ruby svg.rb src_icons 
 
 show: 
-	unzip fontello.zip
+	unzip -q fontello.zip
+	echo Show your fonts to your friends : http://fontello.com/`cat .fontello`
 	iceweasel fontello-*/demo.html
 
 
