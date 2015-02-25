@@ -1,19 +1,23 @@
 #!/usr/bin/ruby
 
 require "nokogiri"
+require "fileutils"
 require "pp"
 require "json"
 require "digest/md5"
 
 $color="ffffff"
 $patch_color="000000"
+$output_dir="build"
 
 def make_not_svg(file,overwrite=false)
 
     cos = Math.cos(Math::PI/4)
 
     fin = file
-    fout = File.join(File.dirname(fin),"not-"+File.basename(fin))
+    FileUtils.mkdir_p(File.join($output_dir,"svg")) 
+    fout = File.join($output_dir,"svg","not-"+File.basename(fin))
+
 
     if File.exists?(fout) and not overwrite
         return fout
@@ -123,8 +127,6 @@ res_json[:ascent] = 850
 code=59392
 Dir.glob(File.join(ARGV[0],"*")).each do |f|
     case f
-    when /\/not-.*svg/i
-        next
     when /.*.svg$/i
         puts "Converting #{f}"
         res_svg=make_not_svg(f)
