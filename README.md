@@ -16,21 +16,34 @@ That's why you want anti-@font-faces like those:
 ![not-blogger](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-blogger.png)
 ![not-youtube](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-youtube.png)
 ![not-linkedin](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-linkedin.png)
-![not-instagram](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-instagram.png)
+![not-instagram](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-instagram-empty.png)
 ![not-twitter](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-twitter-bird.png)
 
 ## Using
 
+This repo comes with some SVG icons already "not"-ified. You can fetch a nice, ready to use bundle with the font-faces this way:
+
+    make fontello
+
+Everything you need is going to be in the `fontello.zip` archive. You can display it in your browser with :
+
+    make show
+
+Just hack html/css/everything from the `demo.html` page source that opened into your socialnetworks-free website.
+
+If you want to rebuild everything, because it's your thing, or because you modified/added to the `src_icons̀` folder:
+
     make svg
     make show
 
-And hack html/css/everything from the `demo.html` page source that opened into your socialnetworks-free website.
 
 ## Add more fonts
 
-Copy SVG files of the icon you want to cross out in `src_icons` folder.
+Copy SVG files of the icon you want to cross out in `src_icons` folder and run
 
-The SVG has to be as simple as possible, with just a path defined.
+    make svg
+
+The SVG has to be as simple as possible, with just a `path` defined.
 
 ## Requirements
 
