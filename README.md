@@ -13,6 +13,8 @@ Yet you're curious about how the web is made and want to be (kinda) part of it.
 That's why you want anti-@font-faces like those:
 
 ![not-facebook](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-facebooksvg.png)
+![not-blogger](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-blogger.png)
+![not-twitter](https://raw.githubusercontent.com/conchyliculture/not-social/master/build/png/not-twitter.png)
 
 ## Using
 
