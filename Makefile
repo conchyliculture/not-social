@@ -4,7 +4,7 @@ svg: clean
 show: 
 	unzip -q fontello.zip
 	echo Show your fonts to your friends : http://fontello.com/`cat .fontello`
-	iceweasel fontello-*/demo.html
+	x-www-browser fontello-*/demo.html
 
 png:
 	rm -rf build/png
