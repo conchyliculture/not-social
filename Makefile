@@ -11,7 +11,7 @@ png:
 	mkdir -p build/png
 	for svg in build/svg/*.svg ; do \
 		out_png=`basename "$$svg"` ; \
-		convert -resize 25% "$$svg" "build/png/$${out_png%svg}png" ; \
+		convert -resize 10% "$$svg" "build/png/$${out_png%svg}png" ; \
 	done
 
 clean: 
