@@ -1,5 +1,10 @@
+fontello:
+	curl  -H "Expect:" --silent --show-error --fail --output .fontello  --form "config=@config.json"      "http://fontello.com/"
+	curl --silent --show-error --fail --output fontello.zip  -H "Expect:"   "http://fontello.com/`cat .fontello`/get"
+
 svg: clean
 	ruby svg.rb src_icons 
+	fontello
 
 show: 
 	unzip -q fontello.zip

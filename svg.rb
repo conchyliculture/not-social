@@ -141,9 +141,3 @@ config = File.new("config.json","w+")
 config.write(JSON.pretty_generate(res_json))
 config.close()
 
-IO.popen("curl  -H \"Expect:\" --silent --show-error --fail --output .fontello  --form \"config=@config.json\"      \"http://fontello.com/\"").read()
-IO.popen("curl --silent --show-error --fail --output fontello.zip  -H \"Expect:\"   \"http://fontello.com/#{File.read('.fontello')}/get\"").read()
-
-
-
-
