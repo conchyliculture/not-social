@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="1000"
+   viewBox=""
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="not-tumblr.svg">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="644"
+     inkscape:window-height="480"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="0.236"
+     inkscape:cx="500"
+     inkscape:cy="500"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <path
+     id="path4"
+     style="fill:#000000"
+     d="M 70.71875,0 0,70.71875 212.53125,283.25 c -0.1261,0.0412 -0.24877,0.084 -0.375,0.125 l 0,132.28125 103.28125,0 0,198.1875 L 0,929.28125 70.71875,1000 315.5625,755.15625 c 0.7599,36.99117 5.19489,65.72053 13.3125,86.09375 8.94486,22.50561 25.02529,43.72623 48.21875,63.71875 23.19159,19.93364 51.17009,35.35158 84,46.15625 32.83178,10.7757 70.60783,16.15625 113.3125,16.15625 37.63084,0 72.64527,-3.77459 105.03125,-11.34375 32.35047,-7.56916 68.51922,-20.81752 108.46875,-39.625 l 0,-57.6875 L 929.28125,1000 1000,929.28125 570.71875,500 l 84.34375,-84.34375 101.84375,0 0,-101.84375 L 1000,70.71875 929.28125,0 l -268.9375,268.9375 -125.1875,0 0,-236.21875 -132.9375,0 c -5.95607,48.204673 -16.86548,87.92407 -32.71875,119.125 -15.83084,31.22897 -36.80841,57.99299 -63,80.25 -0.66538,0.56715 -1.35897,1.09583 -2.03125,1.65625 L 70.71875,0 z m 464.4375,605.875 193.65625,193.65625 c -27.288,10.36358 -54.64921,15.5625 -82.09375,15.5625 -26.63645,0 -50.259,-6.20029 -70.9375,-18.59375 -15.58879,-9.18692 -26.30975,-21.47366 -32.03125,-36.84375 -5.75421,-15.39813 -8.59375,-50.17553 -8.59375,-104.34375 l 0,-49.4375 z" />
+</svg>
